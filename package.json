@@ -1,0 +1,23 @@
+{
+  "name": "easyfix",
+  "version": "1.0.0",
+  "description": "Appointment Scheduler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haha-harshit/EasyFix.git"
+  },
+  "keywords": [
+    "appointment",
+    "scheduler"
+  ],
+  "author": "Harshit Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haha-harshit/EasyFix/issues"
+  },
+  "homepage": "https://github.com/haha-harshit/EasyFix#readme"
+}
