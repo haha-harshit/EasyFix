@@ -6,7 +6,7 @@ module.exports.index = function (req, res) {
     // return res.render("main_test", {
     //     title: "LearnDome",
     // });
-    console.log("hey")
+    console.log("Welcome to index page")
     return res.end('<h1>welcome</h1>')
-    
+
 };
