@@ -6,6 +6,7 @@ module.exports.index = function (req, res) {
     // return res.render("main_test", {
     //     title: "LearnDome",
     // });
-
-    return res.redirect(<h1>Welcome to EasyFix</h1>)
+    console.log("hey")
+    return res.end('<h1>welcome</h1>')
+    
 };
