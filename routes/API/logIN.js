@@ -4,9 +4,10 @@ const router = express.Router();
 
 const passport = require('passport');
 
-// const logIN_signUP_Controller = require('../../controllers/API/indexController');
 
+// log-in controller
+const loginController = require('../../controllers/API/logINcontroller')
 
-
+router.get('/', loginController.login)
 
 module.exports = router;
