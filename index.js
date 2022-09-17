@@ -1,11 +1,13 @@
 const express = require("express");
-
 const port = process.env.PORT || 8000;
 
 // import the layout-lib
 const expressLayouts = require("express-ejs-layouts");
 
 const app = express();
+
+// importing DB
+const db = require("./config/mongoose");
 
 const path = require("path");
 
