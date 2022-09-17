@@ -1,5 +1,5 @@
-const express = require("express");
 const env = require('./config/environment');
+const express = require("express");
 const port = env.port || 8000;
 
 // import the layout-lib
@@ -10,11 +10,20 @@ const app = express();
 // importing DB
 const db = require("./config/mongoose");
 
+// importing middlewares
+const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// using middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(cors());
+
+
 const path = require("path");
 
-
-// middleware
-app.use(express.urlencoded({ extended: true }));
 
 // use a particular layout ---> use it before routes to tell that these routes belong to a particular layout
 app.use(expressLayouts);
