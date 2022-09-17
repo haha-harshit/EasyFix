@@ -1,5 +1,6 @@
 const express = require("express");
-const port = process.env.PORT || 8000;
+const env = require('./config/environment');
+const port = env.port || 8000;
 
 // import the layout-lib
 const expressLayouts = require("express-ejs-layouts");
@@ -10,6 +11,7 @@ const app = express();
 const db = require("./config/mongoose");
 
 const path = require("path");
+
 
 // middleware
 app.use(express.urlencoded({ extended: true }));
@@ -35,6 +37,6 @@ app.listen(port, function (err) {
     if (err) {
         console.log(`Error in running the server: ${err}`);
     }
-
+    console.log(env.port)
     console.log(`Server is running on port: ${port}`);
 });
