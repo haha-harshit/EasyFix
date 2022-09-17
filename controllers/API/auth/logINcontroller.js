@@ -5,3 +5,10 @@ module.exports.login = function(req, res){
         title: "EasyFix | Log-In"
     })
 }
+
+module.exports.create_session = function(req, res){
+    console.log("creating session - login");
+    return res.json({
+        success: "login success"
+    })
+}
