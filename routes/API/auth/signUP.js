@@ -11,11 +11,12 @@ const signupController = require('../../../controllers/API/auth/signUPcontroller
 router.get('/', signupController.signup)
 
 // POST SIGN-UP request || create user
-router.post('/sign-up', [
+router.post('/create-account', [
     // express-validation
     check("username", "Name must be at least 3 chars long").isLength({ min: 3 }),
     check("email", "E-mail is required").isEmail(),
-    check("password", "Password must be atleast 4 char").isLength({min: 4}) 
+    check("password", "Password must be atleast 4 char").isLength({min: 4}),
+    check("password", "Password must be atleast 4 char").isLength({min: 4}),
 ]);
 
 module.exports = router;
