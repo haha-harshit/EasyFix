@@ -1,1 +1,32 @@
 <h1>This is Sign Up page</h1>
+
+<form action="/create-stu-account" method="POST" class="sign-up-form">
+    <h2 class="title">Sign<span>Up</span></h2>
+    <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Username" name="username" required />
+    </div>
+    <div class="input-field">
+        <i class="fas fa-envelope"></i>
+        <input type="email" placeholder="E-mail" name="email" required/>
+    </div>
+    <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Password" name="password" required/>
+    </div>
+    <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="confirm_password" id="confirm_password", placeholder="Confirm Password" required>
+    </div>
+
+    <input type="submit" class="btn" value="Sign up" />
+    <p class="social-text">Or Sign up with social platforms</p>
+    <div class="social-media">
+        <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="/auth-s/google" class="social-icon">
+            <i class="fab fa-google"></i>
+        </a>
+    </div>
+</form>
