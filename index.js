@@ -9,10 +9,17 @@ const app = express();
 
 const path = require("path");
 
+// middleware
 app.use(express.urlencoded({ extended: true }));
 
 // use a particular layout ---> use it before routes to tell that these routes belong to a particular layout
 app.use(expressLayouts);
+
+app.set("layout", "./main_layout");
+
+// extract styles and scripts from sub pages into the layout
+app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
 
 // setting up view engine
 app.set("view engine", "ejs");
