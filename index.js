@@ -1,6 +1,6 @@
 const express = require("express");
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 // import the layout-lib
 const expressLayouts = require("express-ejs-layouts");
