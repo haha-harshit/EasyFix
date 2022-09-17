@@ -10,7 +10,7 @@ const indexController = require('../../controllers/API/indexController');
 router.get('/', indexController.index);
 
 // include other routes
-router.use('/log-in', require('./logIN'))
-router.use('/sign-up', require('./signUP'))
+router.use('/api/log-in', require('./auth/logIN'))
+router.use('/api/sign-up', require('./auth/signUP'))
 
 module.exports = router;
