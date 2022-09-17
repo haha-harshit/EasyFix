@@ -14,6 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 // use a particular layout ---> use it before routes to tell that these routes belong to a particular layout
 app.use(expressLayouts);
 
+// setting up view engine
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
 
 // use express router
 app.use("/", require("./routes/API/index"));
