@@ -11,7 +11,7 @@ const loginController = require('../../../controllers/API/auth/logINcontroller')
 router.get('/', loginController.login)
 
 // LOGIN-session
-router.post('/log-in', [
+router.post('/create-session', [
     check("email", "E-mail is required").isEmail(),
     check("password", "Password is required").isLength({min: 1})
 ]);
