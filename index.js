@@ -1,5 +1,5 @@
-const env = require('./config/environment');
 const express = require("express");
+const env = require('./config/environment');
 const port = env.port || 8000;
 
 // import the layout-lib
@@ -14,6 +14,16 @@ const db = require("./config/mongoose");
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passport-jwt-strategy');
+
+// for storing session data on server restarting
+const MongoStore = require("connect-mongo")(new session);
+
+
+const path = require("path");
 
 // using middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +32,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-const path = require("path");
 
 
 // use a particular layout ---> use it before routes to tell that these routes belong to a particular layout
@@ -37,6 +46,38 @@ app.set("layout extractScripts", true);
 // setting up view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
+
+
+// mongo-store is used to store the session cookie in db!
+// making sessions
+app.use(
+    session({
+        name: "EasyFix",
+
+        // change the secret before deployment
+        secret: env.session_cookie_key,
+        saveUninitialized: false,
+        resave: false,
+        cookie: {
+            maxAge: null,
+        },
+        store: new MongoStore(
+            {
+                mongooseConnection: db,
+                autoRemove: "disabled",
+            },
+            function (err) {
+                console.log(err || "connect-mongodb setup ok");
+            }
+        ),
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
+
 
 
 // use express router
