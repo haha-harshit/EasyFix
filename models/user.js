@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
         }
     ],
 
+    status: {
+        type: Boolean,
+        required: true
+    },
     role: {
         type: Number,
         default: 0
