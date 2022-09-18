@@ -14,6 +14,6 @@ router.get('/', loginController.login)
 router.post('/create-session', [
     check("email", "E-mail is required").isEmail(),
     check("password", "Password is required").isLength({min: 1})
-], loginController.create_session);
+], passport.authenticate('local', {failureRedirect: '/'}), loginController.create_session);
 
 module.exports = router;
