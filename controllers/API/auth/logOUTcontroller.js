@@ -15,6 +15,4 @@ module.exports.destroy_session = function(req, res){
         return res.redirect("/");
     });
     // req.flash("success", "Logged Out Successfully! 👀");
-
-
 }

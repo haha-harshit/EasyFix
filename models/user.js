@@ -25,6 +25,13 @@ const userSchema = new mongoose.Schema({
         maxLength: 32,
     },
     
+    upcoming_appointments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'appointments'
+        }
+    ],
+
     role: {
         type: Number,
         default: 0
