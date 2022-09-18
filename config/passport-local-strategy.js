@@ -14,7 +14,6 @@ passport.use('local' ,new LocalStrategy({
         User.findOne({email: email}, function(err, user){
             if(err){
                 // req.flash('error', err);
-                // console.log('local me dekh')
                 return done(err);
             }
             else if(!user || !user.authenticate(req.body.password)){
@@ -22,11 +21,11 @@ passport.use('local' ,new LocalStrategy({
                 // console.log(user.password)
                 // console.log(req.body.password)
                 // console.log(password);
-                console.log('Not a student id!');
+                console.log('Invalid Username/Password');
                 return done(null, false);
             }
             else{
-                console.log("user hai")
+                console.log("Valid User")
                 return done(null, user);
             }
         }) 

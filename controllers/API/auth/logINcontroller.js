@@ -7,7 +7,6 @@ const env = require('../../../config/environment');
 // GET log-in page
 module.exports.login = function(req, res){
     if(!req.isAuthenticated()){
-        console.log('log-in page');
         // return res.send("<h1>Log-In page</h1>")
         return res.render('./auth pages/_login_page', {
             title: "EasyFix | Log-In"

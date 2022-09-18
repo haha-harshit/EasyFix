@@ -27,6 +27,13 @@ module.exports.create_account = (req, res) => {
         // })
     }
 
+    if (req.body.password != req.body.confirm_password) {
+        // req.flash("error", "Confirmed Password didn't match initial Password!");
+        // req.flash('success', 'Student Account Successfully Created!');
+        console.error("confirm password did not match your initial password!");
+        return res.redirect("back");
+    }
+
     User.findOne({ email: req.body.email }, function (err, user) {
         
         // for any technical error!
@@ -89,7 +96,7 @@ module.exports.create_account = (req, res) => {
                             //     userPassword: user.password,
                             //     userId: user._id
                             // })
-                            return res.redirect("/api/homepage")
+                            return res.redirect("/api/log-in")
                         });
                     }
                 }
