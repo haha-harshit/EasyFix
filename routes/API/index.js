@@ -12,5 +12,7 @@ router.get('/', indexController.index);
 // include other routes
 router.use('/api/log-in', require('./auth/logIN'))
 router.use('/api/sign-up', require('./auth/signUP'))
+router.use('/api/home', require('./home'))
+
 
 module.exports = router;

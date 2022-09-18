@@ -1,4 +1,4 @@
-module.exports.index = function (req, res) {
+module.exports.home = function (req, res) {
     // if (req.isAuthenticated()) {
     //     return res.redirect("/homepage");
     // }
@@ -6,10 +6,10 @@ module.exports.index = function (req, res) {
     // return res.render("main_test", {
     //     title: "LearnDome",
     // });
-    console.log("Welcome to index page")
+    console.log("Home page")
     // return res.end('<h1>welcome</h1>')
-    return res.render("_main_page", {
-        title: "EasyFix"
+    return res.render("_homepage", {
+        title: "EasyFix | Homepage"
     })
 
 };

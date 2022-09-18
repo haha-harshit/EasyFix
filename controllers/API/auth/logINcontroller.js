@@ -12,7 +12,7 @@ var expressJWT = require('express-jwt');
 module.exports.login = function(req, res){
     console.log('log-in page');
     // return res.send("<h1>Log-In page</h1>")
-    return res.render('./auth pages/login_page', {
+    return res.render('./auth pages/_login_page', {
         title: "EasyFix | Log-In"
     })
 }
@@ -28,30 +28,35 @@ module.exports.create_session = (req, res) => {
     }
     console.log("creating session - login");
     
-    User.findOne({email:req.body.email}, function(err, user){
-        if(err){
-            return res.status(400).json({
-                error: "User E-mail does not exist!"
-            })
-        }
-        if(!user.authenticate(req.body.password)){
-            // console.log(req.email)
-            // console.log(req.body.password)
-            return res.status(401).json({
-                error: "E-mail and password did not match!"
-            })
-        }
-        if(user.authenticate(req.body.password)){
-            // create token
-            const token = jwt.sign({_id: user._id}, env.SECRET)
+    // either use this manual authentication or passport-local-- here we have used passport-local as seen in routes
+    // User.findOne({email:req.body.email}, function(err, user){
+    //     if(err){
+    //         return res.status(400).json({
+    //             error: "User E-mail does not exist!"
+    //         })
+    //     }
+    //     if(!user.authenticate(req.body.password)){
+    //         // console.log(req.email)
+    //         // console.log(req.body.password)
+    //         return res.status(401).json({
+    //             error: "E-mail and password did not match!"
+    //         })
+    //     }
+    //     if(user.authenticate(req.body.password)){
+    //         // create token
+    //         const token = jwt.sign({_id: user._id}, env.SECRET)
 
-            // put token in cookie
-            res.cookie("token", token)
+    //         // put token in cookie
+    //         res.cookie("token", token)
 
-            // send response to front end
-            const{ _id, username, email, role} = user;
-            return res.json({token , user: {_id, username, email, role}});
-        }
+    //         // send response to front end
+    //         const{ _id, username, email, role} = user;
+    //         return res.json({token , user: {_id, username, email, role}});
+    //     }
+    // })
+
+    return res.render('_homepage', {
+        title: "EasyFix | Homepage"
     })
     
 }
