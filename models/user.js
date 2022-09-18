@@ -33,8 +33,8 @@ const userSchema = new mongoose.Schema({
     ],
 
     status: {
-        type: Boolean,
-        required: true
+        type: String,
+        // required: true
     },
     role: {
         type: Number,
