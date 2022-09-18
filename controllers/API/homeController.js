@@ -6,7 +6,7 @@ module.exports.home = async function (req, res) {
         
         let users = await User.find({})
 
-        console.log(users);
+        // console.log(users);
         // return res.end('<h1>welcome</h1>')
         return res.render("_homepage", {
             title: "EasyFix | Homepage",

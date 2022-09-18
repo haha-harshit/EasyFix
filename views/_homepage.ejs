@@ -4,5 +4,12 @@
     <a class="links" href="/api/destroy-session">Log-Out</a>
 </div>
 
+<div>
+    <h3>My name: <%= locals.user.username %> </h3>
+</div>
 
-<%= locals.user.username %>
+<ul>
+    <% for (user of all_users){ %>
+        <p><%= user.username%></p>
+    <% } %>
+</ul>
