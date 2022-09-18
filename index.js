@@ -20,7 +20,7 @@ const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 
 // for storing session data on server restarting
-const MongoStore = require("connect-mongo")(new session);
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 
 const path = require("path");
@@ -47,6 +47,20 @@ app.set("layout extractScripts", true);
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+const store = new MongoDBStore(
+    {
+        uri: `mongodb://localhost/${env.db}`,
+        databaseName: env.db,
+        // autoRemove: "disabled",
+        collection: 'mySessions'
+    },
+)
+
+// catch errors
+store.on('error', function(error){
+    console.log('error')
+})
+
 
 // mongo-store is used to store the session cookie in db!
 // making sessions
@@ -61,15 +75,7 @@ app.use(
         cookie: {
             maxAge: null,
         },
-        store: new MongoStore(
-            {
-                mongooseConnection: db,
-                autoRemove: "disabled",
-            },
-            function (err) {
-                console.log(err || "connect-mongodb setup ok");
-            }
-        ),
+        store: store,
     })
 );
 
