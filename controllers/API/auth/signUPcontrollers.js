@@ -4,11 +4,15 @@ const {check, validationResult} = require('express-validator')
 // #1
 // action for GET sign-up page
 module.exports.signup_page = function(req, res){
-    console.log('sign-up page');
-    // return res.send("<h1>Sign-Up page</h1>")
-    return res.render("./auth pages/_signup_page", {
-        title: "EasyFix | Sign-Up"
-    })
+    if(!req.isAuthenticated()){
+        console.log('sign-up page');
+        // return res.send("<h1>Sign-Up page</h1>")
+        return res.render("./auth pages/_signup_page", {
+            title: "EasyFix | Sign-Up"
+        })
+    }
+    return res.redirect('/api/home');
+    
 }
 
 // #2

@@ -13,15 +13,20 @@ passport.use('local' ,new LocalStrategy({
         // find a user and establish the identity
         User.findOne({email: email}, function(err, user){
             if(err){
-                req.flash('error', err);
+                // req.flash('error', err);
+                // console.log('local me dekh')
                 return done(err);
             }
-            else if(!user || user.password != password){
-                req.flash('error', 'Invalid Username/Password');
-                // console.log('Not a student id!');
+            else if(!user || !user.authenticate(req.body.password)){
+                // req.flash('error', 'Invalid Username/Password');
+                // console.log(user.password)
+                // console.log(req.body.password)
+                // console.log(password);
+                console.log('Not a student id!');
                 return done(null, false);
             }
             else{
+                console.log("user hai")
                 return done(null, user);
             }
         }) 
@@ -57,7 +62,7 @@ passport.checkAuthentication = function(req, res, next){
     }
 
     // if user is not signed in
-    req.flash('information', 'You are not Logged In!');
+    // req.flash('information', 'You are not Logged In!');
     return res.redirect('back');
 }
 

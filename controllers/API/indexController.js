@@ -1,7 +1,7 @@
 module.exports.index = function (req, res) {
-    // if (req.isAuthenticated()) {
-    //     return res.redirect("/homepage");
-    // }
+    if (req.isAuthenticated()) {
+        return res.redirect("/api/home");
+    }
 
     // return res.render("main_test", {
     //     title: "LearnDome",

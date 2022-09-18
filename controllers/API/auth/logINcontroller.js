@@ -3,18 +3,17 @@ const {check, validationResult} = require('express-validator')
 
 const env = require('../../../config/environment');
 
-var jwt = require('jsonwebtoken');
-var expressJWT = require('express-jwt');
-
-
 // #1
 // GET log-in page
 module.exports.login = function(req, res){
-    console.log('log-in page');
-    // return res.send("<h1>Log-In page</h1>")
-    return res.render('./auth pages/_login_page', {
-        title: "EasyFix | Log-In"
-    })
+    if(!req.isAuthenticated()){
+        console.log('log-in page');
+        // return res.send("<h1>Log-In page</h1>")
+        return res.render('./auth pages/_login_page', {
+            title: "EasyFix | Log-In"
+        })
+    }
+    return res.redirect('/api/home');
 }
 
 // #2
@@ -22,12 +21,12 @@ module.exports.login = function(req, res){
 module.exports.create_session = (req, res) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-        return res.status(422).json({
-            error: errors.array()[0].msg 
-        })
+        console.log("error h")
+        // return res.status(422).json({
+        //     error: errors.array()[0].msg 
+        // })
+        return res.redirect('back');
     }
-    console.log("creating session - login");
-    
     // either use this manual authentication or passport-local-- here we have used passport-local as seen in routes
     // User.findOne({email:req.body.email}, function(err, user){
     //     if(err){
@@ -54,9 +53,6 @@ module.exports.create_session = (req, res) => {
     //         return res.json({token , user: {_id, username, email, role}});
     //     }
     // })
-
-    return res.render('_homepage', {
-        title: "EasyFix | Homepage"
-    })
+    return res.redirect('/api/home')
     
 }
