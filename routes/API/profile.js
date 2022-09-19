@@ -7,7 +7,11 @@ const passport = require('passport');
 const profileController = require('../../controllers/API/profileController')
 
 // GET PROFILE page
-router.get('/', passport.checkAuthentication, profileController.profile)
+router.get('/:id', passport.checkAuthentication, profileController.profile)
+
+// // GET user-PROFILE page
+// router.get('/', passport.checkAuthentication, profileController.profile)
+
 
 // GET update profile
 router.get('/update-profile/:id', passport.checkAuthentication, profileController.update_profile)

@@ -13,7 +13,7 @@
 
 <p>E-mail: <%= user.email %></p>
 <p>Name: <%= user.username %></p>
-<p>My status: <%= user.status %> </p>
+
 <p>My off-hours: <%= user.offHours %></p>
 <p>My upcoming appointments: <%= user.upcoming_appointments%></p>
 
@@ -51,4 +51,4 @@ $(function() {
 
 <p></p>
 
-<a href="/api/my-profile/update-profile/<%= user.id%>"> Edit Profile </a>
+<a href="/api/profile/update-profile/<%= user.id%>"> Edit Profile </a>

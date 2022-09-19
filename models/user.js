@@ -32,11 +32,6 @@ const userSchema = new mongoose.Schema({
         }
     ],
 
-    status: {
-        type: String,
-        // required: true
-    },
-
     offHours: [
         {
             type: String

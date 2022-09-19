@@ -7,7 +7,7 @@
 </div>
 
 <div>
-    <h3>My name: <a href="/api/my-profile"><%= locals.user.username %></a></h3>
+    <h3>My name: <a href="/api/profile/<%= user.id%>"><%= locals.user.username %></a></h3>
 </div>
 
 <% for (userr of all_users){ %>
@@ -15,22 +15,17 @@
         <%continue%>
     <% } %>
     <ul>
-        <%= userr.username%>
-        <br>
-        <span>Off Hours: </span>
-        <% for(hour of userr.offHours){ %>
-        <ul>
-            <%= hour%>
-        </ul>
-        <% } %>
-
-        <!-- <span>Status: </span>
-        <%if(user.status == "false"){%>
-            <span>Not Available</span>
-        <% }else{ %>
-            <span>Available</span>
-        <% } %> -->
-        
+        <p>
+            <a href="/api/profile/<%= userr.id%>"></a>
+            <%= userr.username%>
+            <br>
+            <span>Off Hours: </span>
+            <% for(hour of userr.offHours){ %>
+            <ul>
+                <%= hour%>
+            </ul>
+            <% } %>
+        </p>        
     </ul>
 <% } %>
 

@@ -2,16 +2,9 @@ const User = require("../../models/user");
 const {check, validationResult} = require('express-validator')
 module.exports.profile = async function (req, res) {
     try {
-        if(req.isAuthenticated()){
-            let user = await User.findById(req.user._id);
-            if(user){
-                // console.log("Profile page")
-                console.log(user.offHours)
-                return res.render("_My_profile", {
-                    title: "EasyFix | Profile"
-                })
-            }else return res.redirect('back');
-        }
+        return res.render("_profile", {
+            title: "EasyFix | Profile"
+        })
     } catch (error) {
         console.log('Error', err);
         return res.redirect('back');
@@ -73,7 +66,7 @@ module.exports.update_profile_ok = async function(req, res){
             user.save();
             console.log("user updated success")
             // req.flash('success', 'Profile Updated');
-            return res.redirect(`/api/my-profile/update-profile/${req.user.id}`);
+            return res.redirect(`/api/profile/update-profile/${req.user.id}`);
         }catch(err){
             console.log('error', err)
             // req.flash('error', err);    
