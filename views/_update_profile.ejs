@@ -1,0 +1,12 @@
+
+
+
+
+<form action="/api/my-profile/update-profile-ok/<%= user.id %>" method="POST">
+    
+    <input type="text" name="username" placeholder="Your Username" value="<%= locals.user.username %>" required/>
+
+    <input type="email" name="email" placeholder="E-mail" value="<%= locals.user.email %>" required/>
+
+    <input type="submit" value="Update" class="btn solid" />
+</form>

@@ -10,7 +10,12 @@ const profileController = require('../../controllers/API/profileController')
 router.get('/', passport.checkAuthentication, profileController.profile)
 
 // GET update profile
-router.get('/update-profile', passport.checkAuthentication, profileController.update_profile)
+router.get('/update-profile/:id', passport.checkAuthentication, profileController.update_profile)
 
+// POST update profile
+router.post('/update-profile-ok/:id',[
+    check("username", "Username must be at least 3 chars long").isLength({ min: 3 }),
+    check("email", "E-mail is required").isEmail(),
+] ,passport.checkAuthentication, profileController.update_profile_ok);
 
 module.exports = router;
