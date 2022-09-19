@@ -15,6 +15,8 @@ router.use('/api/sign-up', require('./auth/signUP'))
 router.use('/api/destroy-session', require('./auth/logOUT'))
 router.use('/api/home', require('./home'))
 router.use('/api/my-profile', require('./profile'))
+router.use('/api/slot', require('./slot'))
+
 
 
 
