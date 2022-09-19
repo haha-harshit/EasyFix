@@ -10,13 +10,15 @@
     <h3>My name: <a href="/api/my-profile"><%= locals.user.username %></a></h3>
 </div>
 
-<% for (user of all_users){ %>
-    
+<% for (userr of all_users){ %>
+    <% if(userr.id == locals.user.id){ %>
+        <%continue%>
+    <% } %>
     <ul>
-        <%= user.username%>
+        <%= userr.username%>
         <br>
         <span>Off Hours: </span>
-        <% for(hour of user.offHours){ %>
+        <% for(hour of userr.offHours){ %>
         <ul>
             <%= hour%>
         </ul>
