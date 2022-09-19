@@ -3,7 +3,6 @@ const User = require('../../models/user');
 module.exports.profile = async function (req, res) {
     try {
         console.log("Profile page")
-        // let users = await User.find({})
         return res.render("_My_profile", {
             title: "EasyFix | Profile"
         })
@@ -11,6 +10,10 @@ module.exports.profile = async function (req, res) {
         console.log('Error', err);
         return res.redirect('back');
     }
+};
 
-
+module.exports.update_profile = function(req, res){
+    return res.render('_update_profile',{
+        title: 'Codeial | Update Profile'
+    });
 };

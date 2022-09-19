@@ -6,7 +6,11 @@ const passport = require('passport');
 // home controller
 const profileController = require('../../controllers/API/profileController')
 
-// GET LOGIN page
+// GET PROFILE page
 router.get('/', passport.checkAuthentication, profileController.profile)
+
+// GET update profile
+router.get('/update-profile', passport.checkAuthentication, profileController.update_profile)
+
 
 module.exports = router;
