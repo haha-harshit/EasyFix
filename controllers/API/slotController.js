@@ -1,15 +1,18 @@
+const { use } = require("passport");
 const User = require("../../models/user");
 
 module.exports.markAsOffHours = async function (req, res) {
 
     try {
         if (req.isAuthenticated()) {
-            console.log(req.body)
-            console.log(req.user.username)
+            // console.log(req.body.datetimes)
+            // console.log(req.user.username)
             let user = await User.findById(req.user._id);
-            // if(user){
-
-            // }
+            if(user){
+                user.offHours.push(req.body.datetimes)
+                user.save();
+                // console.log(user.offHours);
+            }
             return res.redirect('back')
         }    
     } catch (error) {

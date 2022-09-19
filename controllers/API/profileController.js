@@ -2,10 +2,16 @@ const User = require("../../models/user");
 const {check, validationResult} = require('express-validator')
 module.exports.profile = async function (req, res) {
     try {
-        console.log("Profile page")
-        return res.render("_My_profile", {
-            title: "EasyFix | Profile"
-        })
+        if(req.isAuthenticated()){
+            let user = await User.findById(req.user._id);
+            if(user){
+                // console.log("Profile page")
+                console.log(user.offHours)
+                return res.render("_My_profile", {
+                    title: "EasyFix | Profile"
+                })
+            }else return res.redirect('back');
+        }
     } catch (error) {
         console.log('Error', err);
         return res.redirect('back');
