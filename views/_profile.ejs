@@ -10,25 +10,33 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+<p>E-mail: <%= userProfile.email %></p>
+<p>Name: <%= userProfile.username %></p>
 
-<p>E-mail: <%= user.email %></p>
-<p>Name: <%= user.username %></p>
+<% if(userProfile.id == locals.user.id){ %>
+  <p>My off-hours: <%= userProfile.offHours %></p>
+  <p>My upcoming appointments: <%= userProfile.upcoming_appointments%></p>
 
-<p>My off-hours: <%= user.offHours %></p>
-<p>My upcoming appointments: <%= user.upcoming_appointments%></p>
+  <hr>
 
+  <p>Set off hours: </p>
 
-<hr>
+  <!-- form for picking slot to be marked as off hours -->
+  <form action="/api/slot/mark-as-off" method="POST">
+      <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
+      <button type="submit">Mark as Not Available</button>
+  </form>
+<% } %>
 
-<p>Set off hours: </p>
+<% if(userProfile.id != locals.user.id){ %>
 
-
-<!-- form for picking slot to be marked as off hours -->
-<form action="/api/slot/mark-as-off" method="POST">
-    <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
-    <button type="submit">Mark as Not Available</button>
-</form>
-
+    <h3>Book Appointments for available slots</h3>
+    <!-- form for picking slot to be marked as off hours -->
+    <form action="/api/slot/mark-as-off" method="POST">
+        <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
+        <button type="submit">Book Appointment</button>
+    </form>
+<% } %>
 
 <!-- script for date-time picker -->
 <script>
@@ -50,5 +58,6 @@ $(function() {
 </script>
 
 <p></p>
-
+<% if(userProfile.id == locals.user.id){ %>
 <a href="/api/profile/update-profile/<%= user.id%>"> Edit Profile </a>
+<% } %>

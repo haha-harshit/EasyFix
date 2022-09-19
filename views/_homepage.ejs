@@ -16,8 +16,7 @@
     <% } %>
     <ul>
         <p>
-            <a href="/api/profile/<%= userr.id%>"></a>
-            <%= userr.username%>
+            <a href="/api/profile/<%= userr.id%>"><%= userr.username%></a>
             <br>
             <span>Off Hours: </span>
             <% for(hour of userr.offHours){ %>
