@@ -7,7 +7,7 @@ const passport = require('passport');
 const slotController = require('../../controllers/API/slotController')
 
 // GET PROFILE page
-router.post('/', passport.checkAuthentication, slotController.markAsOffHours)
+router.post('/mark-as-off', passport.checkAuthentication, slotController.markAsOffHours)
 
 
 module.exports = router;

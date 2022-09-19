@@ -1,9 +1,23 @@
 const User = require("../../models/user");
 
-module.exports.markAsOffHours = function (req, res) {
-    if (req.isAuthenticated()) {
-        return res.redirect("/api/home");
+module.exports.markAsOffHours = async function (req, res) {
+
+    try {
+        if (req.isAuthenticated()) {
+            console.log(req.body)
+            console.log(req.user.username)
+            let user = await User.findById(req.user._id);
+            // if(user){
+
+            // }
+            return res.redirect('back')
+        }    
+    } catch (error) {
+        console.log('error hai khi')
+        return res.redirect('back');
     }
+
+    
 
     // return res.render("main_test", {
     //     title: "LearnDome",

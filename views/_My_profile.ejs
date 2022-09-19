@@ -1,14 +1,53 @@
-<!-- <h1>This is your Profile Page!</h1> -->
+<!-- 
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alumuko/vanilla-datetimerange-picker@latest/dist/vanilla-datetimerange-picker.css">
 
-<!-- <img src="<%= user.avatar %>" alt="Profile Photo" width="100"> -->
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/alumuko/vanilla-datetimerange-picker@latest/dist/vanilla-datetimerange-picker.js"></script> -->
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
 <p>E-mail: <%= user.email %></p>
 <p>Name: <%= user.username %></p>
 <p>My status: <%= user.status %> </p>
-<p>My status: <%= user.status %></p>
+<p>My off-hours: <%= user.offHours %></p>
+<p>My upcoming appointments: <%= user.upcoming_appointments%></p>
+
+
+<hr>
 
 <p>Set off hours: </p>
 
 
-<!-- <a href="/api/my-profile/update-profile/<%= user.id%>"> Edit Profile </a> -->
+<!-- form for picking slot to be marked as off hours -->
+<form action="/api/slot/mark-as-off" method="POST">
+    <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
+    <button type="submit">Mark as Not Available</button>
+</form>
+
+
+<!-- script for date-time picker -->
+<script>
+$(function() {
+  $('input[name="datetimes"]').daterangepicker({
+    timePicker: true,
+    // opens: 'left',
+    drops: 'down',
+    startDate: moment().startOf('hour'),
+    endDate: moment().startOf('hour').add(32, 'hour'),
+    locale: {
+      format: 'M/DD hh:mm A'
+    }
+  }, function(start, end, label){
+    console.log("new slot selection: " + start.format('MM-DD') + "to" + end.format('MM-DD'));
+  });
+});
+</script>
+
+<p></p>
+
+<a href="/api/my-profile/update-profile/<%= user.id%>"> Edit Profile </a>

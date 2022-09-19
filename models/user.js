@@ -36,6 +36,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
+
+    offHours: [
+        {
+            type: String
+        }
+    ],
+
     role: {
         type: Number,
         default: 0
