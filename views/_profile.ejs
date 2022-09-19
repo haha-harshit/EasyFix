@@ -14,8 +14,16 @@
 <p>Name: <%= userProfile.username %></p>
 
 <% if(userProfile.id == locals.user.id){ %>
-  <p>My off-hours: <%= userProfile.offHours %></p>
-  <p>My upcoming appointments: <%= userProfile.upcoming_appointments%></p>
+  <p>My off-hours: 
+    <% if(userProfile.offHours.length == 0){ %>
+      You haven't selected off-hours yet!
+    <% } %>
+    <%= userProfile.offHours %></p>
+  <p>My upcoming appointments: 
+    <% if(userProfile.upcoming_appointments.length == 0){ %>
+      No appointments scheduled
+    <% } %>
+    <%= userProfile.upcoming_appointments%></p>
 
   <hr>
 
@@ -45,8 +53,9 @@ $(function() {
     timePicker: true,
     // opens: 'left',
     drops: 'down',
+    minDate: moment().subtract(1, 'seconds'),
     startDate: moment().startOf('hour'),
-    endDate: moment().startOf('hour').add(32, 'hour'),
+    endDate: moment().startOf('hour').add(5, 'hour'),
     locale: {
       // format: 'M/DD hh:mm A'
       format: 'MMM D hh:mm A'
