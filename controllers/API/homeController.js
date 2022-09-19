@@ -2,7 +2,7 @@ const User = require('../../models/user');
 
 module.exports.home = async function (req, res) {
     try {
-        console.log("Home page")
+        // console.log("Home page")
         
         let users = await User.find({})
 

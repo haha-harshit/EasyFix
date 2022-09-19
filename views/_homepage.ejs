@@ -11,15 +11,23 @@
 </div>
 
 <% for (user of all_users){ %>
+    
     <ul>
         <%= user.username%>
         <br>
-        <span>Status: </span>
+        <span>Off Hours: </span>
+        <% for(hour of user.offHours){ %>
+        <ul>
+            <%= hour%>
+        </ul>
+        <% } %>
+
+        <!-- <span>Status: </span>
         <%if(user.status == "false"){%>
             <span>Not Available</span>
         <% }else{ %>
             <span>Available</span>
-        <% } %>
+        <% } %> -->
         
     </ul>
 <% } %>
