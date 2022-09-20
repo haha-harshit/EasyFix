@@ -71,7 +71,7 @@ module.exports.update_profile_ok = async function(req, res){
 
             // console.log(user.username)
             user.save();
-            console.log("user updated success")
+            // console.log("user updated success")
             // req.flash('success', 'Profile Updated');
             return res.redirect(`/api/profile/update-profile/${req.user.id}`);
         }catch(err){

@@ -7,7 +7,7 @@ const env = require('../../../config/environment');
 // GET log-in page
 module.exports.destroy_session = function(req, res){
     // function given by passport
-    console.log("logging out")
+
     req.logout(function(err){
         if(err){
             return res.redirect('back')

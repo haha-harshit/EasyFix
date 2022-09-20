@@ -13,6 +13,16 @@
 <p>E-mail: <%= userProfile.email %></p>
 <p>Name: <%= userProfile.username %></p>
 
+<% if(userProfile.id != locals.user.id){ %>
+  <p>Off-Hours: 
+    <% if(userProfile.offHours.length == 0){ %>
+      Available all hours
+    <% } %>
+    <%= userProfile.offHours %></p>
+  </p>
+<% } %>
+
+
 <% if(userProfile.id == locals.user.id){ %>
   <p>My off-hours: 
     <% if(userProfile.offHours.length == 0){ %>
