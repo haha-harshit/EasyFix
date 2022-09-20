@@ -1,0 +1,14 @@
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    <!-- form for picking slot to be marked as off hours -->
+    <form action="/api/slot/mark-as-off" method="POST">
+        <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
+        <button type="submit">Book Appointment</button>
+    </form>

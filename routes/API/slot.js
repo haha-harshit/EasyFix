@@ -3,11 +3,13 @@ const router = express.Router();
 // const {check, validationResult} = require('express-validator');
 const passport = require('passport');
 
-// home controller
+// slot controller
 const slotController = require('../../controllers/API/slotController')
 
-// GET PROFILE page
+// mark off-hours
 router.post('/mark-as-off', passport.checkAuthentication, slotController.markAsOffHours)
 
+
+// book an appointment
 
 module.exports = router;
