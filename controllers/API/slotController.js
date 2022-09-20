@@ -40,9 +40,15 @@ module.exports.book_appointment = async function(req, res){
             let client = await User.findById(req.user._id);
 
             if(guest && client){
-                
-                // guest.upcoming_appointments.push(req.body);
-                // client.upcoming_appointments.push(req.body);
+                let appointment = await Appointment.create({
+                    title: req.body.title,
+                    agenda: req.body.agenda,
+                    time: req.body.datetimes,
+                    guest: guest._id,
+                    client: req.user._id
+                })
+                guest.upcoming_appointments.push(appointment);
+                client.upcoming_appointments.push(appointment);
                 guest.save();
                 client.save();
             }
