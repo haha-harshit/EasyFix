@@ -1,10 +1,13 @@
 const User = require("../../models/user");
+const Appointment = require("../../models/appointments")
 const {check, validationResult} = require('express-validator')
 module.exports.profile = async function (req, res) {
     try {
-        let userProfile = await User.findById(req.params.id);
-        // console.log(userProfile)
-        // console.log(req.params.id)
+        // let appoint = await Appointment.find({})
+        let userProfile = await User.findById(req.params.id)
+        .populate("upcoming_appointments")
+        console.log(userProfile.upcoming_appointments)
+        // console.log(appoint[0].guest)
         if(userProfile){
             return res.render("_profile", {
                 title: "EasyFix | Profile",
@@ -13,7 +16,7 @@ module.exports.profile = async function (req, res) {
         }
         
     } catch (error) {
-        console.log('Error', err);
+        console.log('Error', error);
         return res.redirect('back');
     }
 };

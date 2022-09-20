@@ -33,7 +33,15 @@
     <% if(userProfile.upcoming_appointments.length == 0){ %>
       No appointments scheduled
     <% } %>
-    <%= userProfile.upcoming_appointments%></p>
+
+    <% for(appointment of userProfile.upcoming_appointments){ %>
+      <ul>
+        <%= appointment.title%> on <code><%= appointment.time%></code><br>
+        Guest<span><%= appointment.guest%></span>
+        Client<span><%= appointment.client%></span>
+      </ul>
+    <% } %>
+  </p>
 
   <hr>
 

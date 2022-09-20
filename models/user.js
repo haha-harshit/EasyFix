@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     upcoming_appointments: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'appointments'
+            ref: 'Appointments'
         }
     ],
 
