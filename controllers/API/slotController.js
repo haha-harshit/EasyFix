@@ -2,41 +2,32 @@ const { use } = require("passport");
 const User = require("../../models/user");
 
 module.exports.markAsOffHours = async function (req, res) {
-
     try {
         if (req.isAuthenticated()) {
-            // console.log(req.body.datetimes)
-            // console.log(req.user.username)
             let user = await User.findById(req.user._id);
             if(user){
                 user.offHours.push(req.body.datetimes)
                 user.save();
-                // console.log(user.offHours);
             }
             return res.redirect('back')
         }    
     } catch (error) {
-        console.log('error hai khi')
+        console.log('error in marking off-hrs')
         return res.redirect('back');
     }
-
-    
-
-    // return res.render("main_test", {
-    //     title: "LearnDome",
-    // });
-    console.log("Welcome to index page")
-    // return res.end('<h1>welcome</h1>')
-    return res.render("_main_page", {
-        title: "EasyFix"
-    })
-
 };
 
 module.exports.appointment_plannar = async function(req, res){
     try {
-        
+        if (req.isAuthenticated()) {
+            let guest = await User.findById(req.params.id);
+            return res.render('_appointment_plannar', {
+                title: 'EasyFix | Appointment Plannar',
+                guest: guest
+            })
+        }    
     } catch (error) {
-        
+        console.log('error in appoint-plannar', error);
+        return res.redirect('back')
     }
 }
