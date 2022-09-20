@@ -41,6 +41,7 @@
 
   <!-- form for picking slot to be marked as off hours -->
   <form action="/api/slot/mark-as-off" method="POST">
+    
       <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
       <button type="submit">Mark as Not Available</button>
   </form>
@@ -56,28 +57,31 @@
 
 <% } %>
 
-<!-- script for date-time picker -->
-<script>
-$(function() {
-  $('input[name="datetimes"]').daterangepicker({
-    timePicker: true,
-    // opens: 'left',
-    drops: 'down',
-    minDate: moment().subtract(1, 'seconds'),
-    startDate: moment().startOf('hour'),
-    endDate: moment().startOf('hour').add(5, 'hour'),
-    timePickerIncrement: 30,
-    locale: {
-      // format: 'M/DD hh:mm A'
-      format: 'MMM D hh:mm A'
-    }
-  }, function(start, end, label){
-    console.log("new slot selection: " + start.format('MMM D') + "to" + end.format('MMM D'));
-  });
-});
-</script>
+
 
 <p></p>
 <% if(userProfile.id == locals.user.id){ %>
 <a href="/api/profile/update-profile/<%= user.id%>"> Edit Profile </a>
 <% } %>
+
+
+<!-- script for date-time picker -->
+<script>
+  $(function() {
+    $('input[name="datetimes"]').daterangepicker({
+      timePicker: true,
+      // opens: 'left',
+      drops: 'down',
+      minDate: moment().subtract(1, 'seconds'),
+      startDate: moment().startOf('hour'),
+      endDate: moment().startOf('hour').add(5, 'hour'),
+      timePickerIncrement: 30,
+      locale: {
+        // format: 'M/DD hh:mm A'
+        format: 'MMM D hh:mm A'
+      }
+    }, function(start, end, label){
+      console.log("new slot selection: " + start.format('MMM D') + "to" + end.format('MMM D'));
+    });
+  });
+  </script>

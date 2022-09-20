@@ -7,31 +7,60 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
+
 <h1>Welcome to <%= guest.username%>'s Appointment Plannar</h1>
 
     <!-- form for picking slot to be marked as off hours -->
     <form action="/api/slot/book-appointment/<%= guest.id%>" method="POST">
-        <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
+        <div>
+            <span>Guest Name: <strong><%= guest.username%></strong></span>
+            <input type="text" name="guest" id="guest" value="<%= guest.username%>" hidden>
+        </div>
+        <p></p>
+        <div>
+            <span>Client Name: <strong><%= user.username%></strong></span>
+            <input type="text" name="client" id="client" value="<%= user.username%>" hidden>
+        </div>
+        <p></p>
+        <div>
+            <input type="text" name="title" id="title" placeholder="Title" style="width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;" required>
+        </div>
+        <p></p>
+        <div>
+            <input type="text" name="agenda" id="agenda" placeholder="Agenda" style="width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;" required>
+        </div>
+        <p></p>
+        <div>
+            <input type="text" name="datetimes" style="text-align: center;width: 250px;cursor: pointer;padding: 5px 10px; border: 1px solid #ccc;background: #fff;"/>
+        </div>
+        <p></p>
         <button type="submit">Book Appointment</button>
     </form>
 
 
     <script>
-        $(function() {
-          $('input[name="datetimes"]').daterangepicker({
-            timePicker: true,
-            // opens: 'left',
-            drops: 'down',
-            minDate: moment().subtract(1, 'seconds'),
-            startDate: moment().startOf('hour'),
-            endDate: moment().startOf('hour').add(5, 'hour'),
-            timePickerIncrement: 30,
-            locale: {
-              // format: 'M/DD hh:mm A'
-              format: 'MMM D hh:mm A'
-            }
-          }, function(start, end, label){
+        $(document).ready(function() {
+            $('input[name="datetimes"]').daterangepicker({
+                timePicker: true,
+                // opens: 'left',
+                drops: 'down',
+                minDate: moment().subtract(1, 'seconds'),
+                startDate: moment().startOf('hour'),
+                endDate: moment().startOf('hour').add(5, 'hour'),
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MMM D hh:mm A'
+                }
+            }, function(start, end, label){
             console.log("new slot selection: " + start.format('MMM D') + "to" + end.format('MMM D'));
-          });
+            });
+
+            $('input[name="title"]').val("")
+            $('input[name="agenda"]').val("")
+
         });
+        
+    
+            
+        
         </script>

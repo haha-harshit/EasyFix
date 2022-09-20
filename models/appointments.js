@@ -15,21 +15,24 @@ const appointmentSchema = new mongoose.Schema({
     agenda: {
         type: String,
         required: true,
-        // trim: true
+        // trim: true 
     },
     // salt: String,
     time: {
+        type: String,
         required: true,
     },
 
     guest: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true
     },
 
     client:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        required: true
     },
 
 }, {

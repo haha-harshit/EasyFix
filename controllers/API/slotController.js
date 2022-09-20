@@ -1,5 +1,6 @@
 const { use } = require("passport");
 const User = require("../../models/user");
+const Appointment = require("../../models/appointments");
 
 module.exports.markAsOffHours = async function (req, res) {
     try {
@@ -39,14 +40,13 @@ module.exports.book_appointment = async function(req, res){
             let client = await User.findById(req.user._id);
 
             if(guest && client){
-                // guest.upcoming_appointments.push(req.body.datetimes)
+                
+                // guest.upcoming_appointments.push(req.body);
+                // client.upcoming_appointments.push(req.body);
+                guest.save();
+                client.save();
             }
-
-
-            return res.render('_appointment_plannar', {
-                title: 'EasyFix | Appointment Plannar',
-                guest: guest
-            })
+            return res.redirect('back')
         }    
     } catch (error) {
         console.log('error in appoint-plannar', error);
