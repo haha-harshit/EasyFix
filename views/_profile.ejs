@@ -49,7 +49,7 @@
 <% if(userProfile.id != locals.user.id){ %>
 
   <!-- form to GET set appointment page -->
-  <form action="" method="get">
+  <form action="/api/slot/appointment-plannar/<%= userProfile.id%>" method="get">
     <button type="submit">Book Appointment</button>
   </form>
   <code>Book Appointments for available slots*</code>

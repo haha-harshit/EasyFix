@@ -10,6 +10,7 @@ const slotController = require('../../controllers/API/slotController')
 router.post('/mark-as-off', passport.checkAuthentication, slotController.markAsOffHours)
 
 
-// book an appointment
+// GET appointment page
+router.get('/appointment-plannar/:id', passport.checkAuthentication, slotController.appointment_plannar)
 
 module.exports = router;

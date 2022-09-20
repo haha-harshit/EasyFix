@@ -32,3 +32,11 @@ module.exports.markAsOffHours = async function (req, res) {
     })
 
 };
+
+module.exports.appointment_plannar = async function(req, res){
+    try {
+        
+    } catch (error) {
+        
+    }
+}
