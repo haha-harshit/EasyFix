@@ -17,13 +17,8 @@
     <ul>
         <p>
             <a href="/api/profile/<%= userr.id%>"><%= userr.username%></a>
-            <br>
-            <span>Off Hours: </span>
-            <% for(hour of userr.offHours){ %>
-            <ul>
-                <%= hour%>
-            </ul>
-            <% } %>
+            &nbsp;
+            <a href="/api/profile/<%= userr.id%>">View Availability</a>
         </p>        
     </ul>
 <% } %>
